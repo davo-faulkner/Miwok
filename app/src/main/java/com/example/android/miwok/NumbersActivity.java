@@ -31,15 +31,15 @@ public class NumbersActivity extends AppCompatActivity {
 
         ArrayList<Word> words = new ArrayList<>();
         words.add(new Word("one", "lutti"));
-        words.add(new Word("two", ""));
-        words.add(new Word("three", ""));
-        words.add(new Word("four", ""));
-        words.add(new Word("five", ""));
-        words.add(new Word("six", ""));
-        words.add(new Word("seven", ""));
-        words.add(new Word("eight", ""));
-        words.add(new Word("nine", ""));
-        words.add(new Word("ten", ""));
+        words.add(new Word("two", "otiiko"));
+        words.add(new Word("three", "tolookosu"));
+        words.add(new Word("four", "oyyisa"));
+        words.add(new Word("five", "massokka"));
+        words.add(new Word("six", "temmokka"));
+        words.add(new Word("seven", "kenekaku"));
+        words.add(new Word("eight", "kawinta"));
+        words.add(new Word("nine", "wo'e"));
+        words.add(new Word("ten", "na'aacha"));
 
         ArrayAdapter<Word> itemsAdapter = new ArrayAdapter<>(this, R.layout.list_item, words);
 
