@@ -16,6 +16,7 @@
         android:layout_height="88dp"
         android:orientation="vertical"
         android:gravity="center_vertical"
+        android:background="@color/category_numbers"
         android:paddingLeft="16dp">
 
         <TextView
