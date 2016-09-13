@@ -14,8 +14,11 @@ import java.util.ArrayList;
  * Created by Davo on 9/11/2016.
  */
 public class WordAdapter extends ArrayAdapter<Word>{
-    public WordAdapter(Activity context, ArrayList<Word> words) {
+    private int mColorID;
+
+    public WordAdapter(Activity context, ArrayList<Word> words, int ColorID) {
         super(context, 0, words);
+        this.mColorID = ColorID;
     }
 
     /**
