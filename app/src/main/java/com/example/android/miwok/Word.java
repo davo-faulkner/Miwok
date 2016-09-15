@@ -10,6 +10,11 @@ public class Word {
     private static final int NO_IMAGE_PROVIDED = -1;
     private int mAudioResourceId;
 
+    public Word(String mDefaultTranslation, String mMiwokTranslation) {
+        this.mDefaultTranslation = mDefaultTranslation;
+        this.mMiwokTranslation = mMiwokTranslation;
+    }
+
     public Word(String defaultTranslation, String miwokTranslation, int audioResouceId) {
         mDefaultTranslation = defaultTranslation;
         mMiwokTranslation = miwokTranslation;
