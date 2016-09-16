@@ -60,6 +60,7 @@ public class FamilyActivity extends AppCompatActivity {
 
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                releaseMediaPlayer();
                 mMediaPlayer = MediaPlayer.create(FamilyActivity.this, words.get(position).getAudioResourceId());
                 mMediaPlayer.start();
 
