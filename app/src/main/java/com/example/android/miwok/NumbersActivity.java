@@ -88,7 +88,7 @@ public class NumbersActivity extends AppCompatActivity {
                 releaseMediaPlayer();
 
                 // Request audio focus for playback
-                int result = mAudioManager.requestAudioFocus(afChangeListener,
+                int result = mAudioManager.requestAudioFocus(mOnAudioFocusChangeListener,
                         // Use the music stream.
                         AudioManager.STREAM_MUSIC,
                         // Request permanent focus.
