@@ -15,6 +15,7 @@
  */
 package com.example.android.miwok;
 
+import android.content.Context;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
@@ -27,26 +28,10 @@ import java.util.ArrayList;
 
 public class NumbersActivity extends AppCompatActivity {
     private MediaPlayer mMediaPlayer;
-    private AudioManager mAudioManager;
     private MediaPlayer.OnCompletionListener mCompletionListener = new MediaPlayer.OnCompletionListener() {
         @Override
         public void onCompletion(MediaPlayer mp) {
             releaseMediaPlayer();
-        }
-    };
-
-    private AudioManager.OnAudioFocusChangeListener mOnAudioFocusChangeListener = new AudioManager.OnAudioFocusChangeListener() {
-        @Override
-        public void onAudioFocusChange(int focusChange) {
-            if (focusChange == AudioManager.AUDIOFOCUS_LOSS_TRANSIENT ||
-                    focusChange == AudioManager.AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK) {
-                mMediaPlayer.pause();
-                mMediaPlayer.seekTo(0);
-            } else if (focusChange == AudioManager.AUDIOFOCUS_GAIN) {
-                mMediaPlayer.start();
-            } else if (focusChange == AudioManager.AUDIOFOCUS_LOSS) {
-                releaseMediaPlayer();
-            }
         }
     };
 
@@ -78,12 +63,12 @@ public class NumbersActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 releaseMediaPlayer();
-                mMediaPlayer = MediaPlayer.create(NumbersActivity.this, words.get(position).getAudioResourceId());
-                mMediaPlayer.start();
+                    mMediaPlayer = MediaPlayer.create(NumbersActivity.this, words.get(position).getAudioResourceId());
+                    mMediaPlayer.start();
 
-                mMediaPlayer.setOnCompletionListener(mCompletionListener);
-            }
-        });
+                    mMediaPlayer.setOnCompletionListener(mCompletionListener);
+                }
+            });
     }
 
     @Override
