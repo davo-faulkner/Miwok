@@ -27,6 +27,8 @@ import android.widget.ListView;
 
 import java.util.ArrayList;
 
+import static android.media.AudioManager.AUDIOFOCUS_LOSS_TRANSIENT;
+
 public class NumbersActivity extends AppCompatActivity {
 
     private MediaPlayer mMediaPlayer;
@@ -38,6 +40,21 @@ public class NumbersActivity extends AppCompatActivity {
             releaseMediaPlayer();
         }
     };
+
+    AudioManager.OnAudioFocusChangeListener mOnAudioFocusChangeListener =
+            new AudioManager.OnAudioFocusChangeListener() {
+                public void onAudioFocusChange(int focusChange) {
+                    if (focusChange == AUDIOFOCUS_LOSS_TRANSIENT) {
+                        // Pause playback
+                    } else if (focusChange == AudioManager.AUDIOFOCUS_GAIN) {
+                        // Resume playback
+                    } else if (focusChange == AudioManager.AUDIOFOCUS_LOSS) {
+                        mAudioManager.unregisterMediaButtonEventReceiver(RemoteControlReceiver);
+                        mAudioManager.abandonAudioFocus(mOnAudioFocusChangeListener);
+                        // Stop playback
+                    }
+                }
+            };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
