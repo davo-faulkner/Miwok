@@ -28,6 +28,7 @@ import android.widget.ListView;
 import java.util.ArrayList;
 
 import static android.media.AudioManager.AUDIOFOCUS_LOSS_TRANSIENT;
+import static android.media.AudioManager.AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK;
 
 public class NumbersActivity extends AppCompatActivity {
 
@@ -44,14 +45,17 @@ public class NumbersActivity extends AppCompatActivity {
     AudioManager.OnAudioFocusChangeListener mOnAudioFocusChangeListener =
             new AudioManager.OnAudioFocusChangeListener() {
                 public void onAudioFocusChange(int focusChange) {
-                    if (focusChange == AUDIOFOCUS_LOSS_TRANSIENT) {
+                    if (focusChange == AUDIOFOCUS_LOSS_TRANSIENT ||
+                            focusChange == AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK) {
                         // Pause playback
+                        mMediaPlayer.pause();
+                        mMediaPlayer.seekTo(0);
                     } else if (focusChange == AudioManager.AUDIOFOCUS_GAIN) {
                         // Resume playback
+                        mMediaPlayer.start();
                     } else if (focusChange == AudioManager.AUDIOFOCUS_LOSS) {
-                        mAudioManager.unregisterMediaButtonEventReceiver(RemoteControlReceiver);
-                        mAudioManager.abandonAudioFocus(mOnAudioFocusChangeListener);
                         // Stop playback
+                        releaseMediaPlayer();
                     }
                 }
             };
