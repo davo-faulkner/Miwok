@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/list_item"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="horizontal"
     android:minHeight="@dimen/list_item_height"
     android:background="@color/tan_background">
@@ -19,6 +19,7 @@
         android:layout_height="@dimen/list_item_height"
         android:orientation="vertical"
         android:gravity="center_vertical"
+        android:layout_weight="1"
         android:paddingLeft="16dp">
 
         <TextView
@@ -39,5 +40,13 @@
             tools:text="one" />
 
     </LinearLayout>
+
+    <ImageView
+        android:id="@+id/play_icon_image_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="16dp"
+        android:src="@drawable/ic_play"
+        android:layout_gravity="center_vertical"/>
 
 </LinearLayout>
