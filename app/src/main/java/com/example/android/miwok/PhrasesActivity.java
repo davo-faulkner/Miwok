@@ -89,10 +89,22 @@ public class PhrasesActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 releaseMediaPlayer();
-                mMediaPlayer = MediaPlayer.create(PhrasesActivity.this, words.get(position).getAudioResourceId());
-                mMediaPlayer.start();
 
-                mMediaPlayer.setOnCompletionListener(mCompletionListener);
+                // Request audio focus for playback
+                int result = mAudioManager.requestAudioFocus(mOnAudioFocusChangeListener,
+                        // Use the music stream.
+                        AudioManager.STREAM_MUSIC,
+                        // Request permanent focus.
+                        AudioManager.AUDIOFOCUS_GAIN_TRANSIENT);
+
+                if (result == AudioManager.AUDIOFOCUS_REQUEST_GRANTED) {
+                    // Start playback.
+
+                    mMediaPlayer = MediaPlayer.create(PhrasesActivity.this, words.get(position).getAudioResourceId());
+                    mMediaPlayer.start();
+
+                    mMediaPlayer.setOnCompletionListener(mCompletionListener);
+                }
             }
         });
     }

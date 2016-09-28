@@ -87,10 +87,22 @@ public class ColorsActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 releaseMediaPlayer();
-                mMediaPlayer = MediaPlayer.create(ColorsActivity.this, words.get(position).getAudioResourceId());
-                mMediaPlayer.start();
 
-                mMediaPlayer.setOnCompletionListener(mCompletionListener);
+                // Request audio focus for playback
+                int result = mAudioManager.requestAudioFocus(mOnAudioFocusChangeListener,
+                        // Use the music stream.
+                        AudioManager.STREAM_MUSIC,
+                        // Request permanent focus.
+                        AudioManager.AUDIOFOCUS_GAIN_TRANSIENT);
+
+                if (result == AudioManager.AUDIOFOCUS_REQUEST_GRANTED) {
+                    // Start playback.
+
+                    mMediaPlayer = MediaPlayer.create(ColorsActivity.this, words.get(position).getAudioResourceId());
+                    mMediaPlayer.start();
+
+                    mMediaPlayer.setOnCompletionListener(mCompletionListener);
+                }
             }
         });
     }
