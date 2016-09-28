@@ -130,7 +130,8 @@ public class PhrasesActivity extends AppCompatActivity {
             // is not configured to play an audio file at the moment.
             mMediaPlayer = null;
 
-
+            // Abandon audio focus when playback complete
+            mAudioManager.abandonAudioFocus(mOnAudioFocusChangeListener);
         }
     }
 }
