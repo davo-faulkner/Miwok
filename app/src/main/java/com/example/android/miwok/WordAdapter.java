@@ -65,9 +65,16 @@ public class WordAdapter extends ArrayAdapter<Word> {
         // Set the theme color for the list item
         View textContainer = listItemView.findViewById(R.id.linear_layout);
         // Find the color that the resource ID maps to
-        int color = ContextCompat.getColor(getContext(), mColorResourceId);
+        int listItemColor = ContextCompat.getColor(getContext(), mColorResourceId);
         // Set the background color of the text container View
-        textContainer.setBackgroundColor(color);
+        textContainer.setBackgroundColor(listItemColor);
+
+        // Set the theme color for the play icon item
+        View playIconContainer = listItemView.findViewById(R.id.play_icon_image_view);
+        // Find the color that the resource ID maps to
+        int playIconColor = ContextCompat.getColor(getContext(), mColorResourceId);
+        // Set the background color of the text container View
+        playIconContainer.setBackgroundColor(playIconColor);
 
         // Return the whole list item layout (containing 2 TextViews)
         // so that it can be shown in the ListView
